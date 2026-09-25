@@ -1,1 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>RinkuWriter | Words. Ideas. Stories.</title>
+
+  <meta name="description" content="RinkuWriter — a personal space for words, ideas, stories and creative work.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    :root {
+      --bg: #080808;
+      --bg2: #11100d;
+      --gold: #d6ad55;
+      --gold-light: #f3d98b;
+      --text: #f5f5f5;
+      --muted: #a6a6a6;
+      --card: #14130f;
+      --border: rgba(214,173,85,0.22);
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVBAR */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      backdrop-filter: blur(15px);
+      background: rgba(8,8,8,0.82);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: auto;
+      height: 70px;
+      padding: 0 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .logo span {
+      color: var(--gold);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #ccc;
+      font-size: 14px;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--gold-light);
+    }
+
+    .menu {
+      display: none;
+      font-size: 27px;
+      cursor: pointer;
+      color: var(--gold);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 110px 22px 70px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(214,173,85,0.16), transparent 68%);
+      top: 15%;
+      left: 50%;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 800px;
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      font-size: 12px;
+      margin-bottom: 18px;
+    }
+
+    .hero h1 {
+      font-size: clamp(48px, 12vw, 100px);
+      line-height: 0.95;
+      letter-spacing: -5px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span {
+      color: var(--gold);
+    }
+
+    .hero h2 {
+      font-size: clamp(20px, 4vw, 30px);
+      font-weight: 400;
+      color: #ddd;
+      margin-bottom: 18px;
+    }
+
+    .hero p {
+      max-width: 620px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .buttons {
+      margin-top: 35px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 13px 23px;
+      border-radius: 30px;
+      border: 1px solid var(--gold);
+      transition: 0.3s;
+      font-size: 14px;
+    }
+
+    .btn.primary {
+      background: var(--gold);
+      color: #111;
+      font-weight: 700;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px rgba(214,173,85,0.15);
+    }
+
+    /* SECTIONS */
+    section {
+      max-width: 1100px;
+      margin: auto;
+      padding: 100px 22px;
+    }
+
+    .section-label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 11px;
+      margin-bottom: 10px;
+    }
+
+    .section-title {
+      font-size: clamp(30px, 6vw, 48px);
+      margin-bottom: 18px;
+    }
+
+    .section-text {
+      color: var(--muted);
+      max-width: 700px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 45px;
+      align-items: center;
+    }
+
+    .about-card {
+      padding: 35px;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: linear-gradient(145deg, #15140f, #0d0d0c);
+    }
+
+    .about-card h3 {
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    /* WORK */
+    .cards {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 28px;
+      min-height: 200px;
+      border-radius: 18px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(214,173,85,0.5);
+    }
+
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 18px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      color: var(--gold-light);
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    /* BOOKS */
+    .book-box {
+      margin-top: 35px;
+      padding: 45px 25px;
+      text-align: center;
+      border-radius: 20px;
+      border: 1px dashed rgba(214,173,85,0.35);
+      background: rgba(214,173,85,0.03);
+    }
+
+    .book-box .big {
+      font-size: 50px;
+      margin-bottom: 12px;
+    }
+
+    .book-box h3 {
+      color: var(--gold-light);
+      margin-bottom: 8px;
+    }
+
+    .book-box p {
+      color: var(--muted);
+    }
+
+    /* THOUGHT */
+    .quote {
+      margin-top: 35px;
+      padding: 45px 30px;
+      text-align: center;
+      border-left: 2px solid var(--gold);
+      background: linear-gradient(90deg, rgba(214,173,85,0.07), transparent);
+    }
+
+    .quote p {
+      font-size: clamp(21px, 4vw, 30px);
+      font-style: italic;
+      color: #eee;
+    }
+
+    /* CONTACT */
+    .contact-box {
+      margin-top: 35px;
+      padding: 40px;
+      border-radius: 20px;
+      background: var(--card);
+      border: 1px solid var(--border);
+    }
+
+    .contact-item {
+      margin: 18px 0;
+      color: var(--muted);
+    }
+
+    .contact-item strong {
+      color: var(--gold-light);
+      margin-right: 8px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 35px 20px;
+      text-align: center;
+      color: #777;
+      font-size: 13px;
+    }
+
+    footer span {
+      color: var(--gold);
+    }
+
+    /* MOBILE */
+    @media (max-width: 700px) {
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        width: 100%;
+        padding: 20px;
+        background: #0b0b0b;
+        border-bottom: 1px solid var(--border);
+        flex-direction: column;
+        gap: 18px;
+      }
+
+      .nav-links.active {
+        display: flex;
+      }
+
+      .menu {
+        display: block;
+      }
+
+      .about-grid,
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        letter-spacing: -3px;
+      }
+
+      section {
+        padding: 75px 20px;
+      }
+
+      .about-card,
+      .contact-box {
+        padding: 25px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+  <nav>
+    <div class="nav-inner">
+
+      <a href="#home" class="logo">
+        Rinku<span>Writer</span>
+      </a>
+
+      <div class="menu" onclick="toggleMenu()">☰</div>
+
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#books">Books</a></li>
+        <li><a href="#thoughts">Thoughts</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+    </div>
+  </nav>
+
+
+  <!-- HERO -->
+  <header class="hero" id="home">
+
+    <div class="hero-content">
+
+      <div class="eyebrow">Welcome to</div>
+
+      <h1>Rinku<span>Writer</span></h1>
+
+      <h2>Words. Ideas. Stories.</h2>
+
+      <p>
+        A personal space where ideas become words,
+        thoughts become stories, and creativity gets a place to live.
+      </p>
+
+      <div class="buttons">
+        <a href="#about" class="btn primary">Explore My World</a>
+        <a href="#contact" class="btn">Get In Touch</a>
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- ABOUT -->
+  <section id="about">
+
+    <div class="about-grid">
+
+      <div>
+        <div class="section-label">About Me</div>
+
+        <h2 class="section-title">
+          I'm Rinku.
+        </h2>
+
+        <p class="section-text">
+          I’m a creator who enjoys putting ideas into words and
+          turning learning, experiences and thoughts into something
+          meaningful.
+        </p>
+
+        <br>
+
+        <p class="section-text">
+          RinkuWriter is my personal space to share my writing,
+          ideas and future creative projects.
+        </p>
+      </div>
+
+      <div class="about-card">
+
+        <h3>Why RinkuWriter?</h3>
+
+        <p class="section-text">
+          Because every idea starts somewhere.
+          This website is where I can collect my work,
+          share my thoughts and gradually build something of my own.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WORK -->
+  <section id="work">
+
+    <div class="section-label">What I Do</div>
+
+    <h2 class="section-title">
+      Creating. Learning. Sharing.
+    </h2>
+
+    <p class="section-text">
+      My work is not limited to one format. I’m interested in
+      writing, learning new things and building digital projects.
+    </p>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-icon">✍️</div>
+        <h3>Writing</h3>
+        <p>
+          Turning ideas, experiences and thoughts into words
+          that people can read and connect with.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💡</div>
+        <h3>Ideas</h3>
+        <p>
+          Exploring concepts, learning from them and developing
+          new perspectives along the way.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="card-icon">💻</div>
+        <h3>Digital Projects</h3>
+        <p>
+          Experimenting with websites, technology and creative
+          digital projects.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- BOOKS -->
+  <section id="books">
+
+    <div class="section-label">My Books</div>
+
+    <h2 class="section-title">
+      Books & Publications
+    </h2>
+
+    <div class="book-box">
+
+      <div class="big">📚</div>
+
+      <h3>Something is coming.</h3>
+
+      <p>
+        My books and written projects will appear here
+        as they are published.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- THOUGHTS -->
+  <section id="thoughts">
+
+    <div class="section-label">Thoughts</div>
+
+    <h2 class="section-title">
+      A place for ideas.
+    </h2>
+
+    <div class="quote">
+
+      <p>
+        “Every great piece of writing begins with a simple idea.”
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- CONTACT -->
+  <section id="contact">
+
+    <div class="section-label">Contact</div>
+
+    <h2 class="section-title">
+      Let's connect.
+    </h2>
+
+    <p class="section-text">
+      Have something to say, discuss or collaborate on?
+      You can reach me here.
+    </p>
+
+    <div class="contact-box">
+
+      <div class="contact-item">
+        <strong>Email:</strong>
+        <a href="mailto:sreshu576@gmail.com">
+          sreshu576@gmail.com
+        </a>
+      </div>
+
+      <div class="contact-item">
+        <strong>Instagram:</strong>
+        <a href="https://www.instagram.com/Official-Rinku-45-/" target="_blank">
+          @Official-Rinku-45-
+        </a>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer>
+    © <span id="year"></span> RinkuWriter. All rights reserved.
+  </footer>
+
+
+  <script>
+
+    function toggleMenu() {
+      document.getElementById("navLinks").classList.toggle("active");
+    }
+
+    document.querySelectorAll(".nav-links a").forEach(function(link) {
+      link.addEventListener("click", function() {
+        document.getElementById("navLinks").classList.remove("active");
+      });
+    });
+
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+  </script>
+
+</body>
+</html>
