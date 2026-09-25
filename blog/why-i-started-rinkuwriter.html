@@ -1,1 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+  <title>Why I Started RinkuWriter | RinkuWriter</title>
+
+  <meta name="description"
+        content="The story behind RinkuWriter — a small beginning to share thoughts, ideas, stories and the journey of learning and writing.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #08090b;
+      color: #eeeeee;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1.85;
+    }
+
+    /* TOP BAR */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(8, 9, 11, 0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid #242424;
+    }
+
+    .nav {
+      max-width: 900px;
+      margin: auto;
+      padding: 18px 20px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      text-decoration: none;
+      color: #d4af37;
+
+      font-family: Arial, sans-serif;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+
+    .back {
+      text-decoration: none;
+      color: #a9a9a9;
+
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+
+      transition: 0.3s;
+    }
+
+    .back:hover {
+      color: #d4af37;
+    }
+
+    /* ARTICLE */
+
+    main {
+      max-width: 800px;
+      margin: auto;
+      padding: 70px 22px 90px;
+    }
+
+    .category {
+      display: inline-block;
+
+      color: #d4af37;
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(38px, 9vw, 68px);
+      line-height: 1.08;
+      letter-spacing: -1.5px;
+
+      margin-bottom: 22px;
+    }
+
+    .intro {
+      color: #a9a9a9;
+      font-size: 20px;
+      line-height: 1.6;
+
+      margin-bottom: 25px;
+    }
+
+    .meta {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+
+      color: #777777;
+
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+
+      padding-bottom: 30px;
+      border-bottom: 1px solid #292929;
+    }
+
+    .dot {
+      color: #d4af37;
+    }
+
+    article {
+      padding-top: 42px;
+    }
+
+    article p {
+      color: #d6d6d6;
+      font-size: 18px;
+
+      margin-bottom: 28px;
+    }
+
+    article strong {
+      color: #f0d77b;
+      font-weight: 600;
+    }
+
+    /* QUOTE */
+
+    .quote {
+      margin: 40px 0;
+
+      padding: 18px 22px;
+
+      border-left: 3px solid #d4af37;
+
+      background: #101114;
+
+      color: #f0d77b;
+
+      font-size: 23px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    /* HIGHLIGHT */
+
+    .highlight {
+      margin: 45px 0;
+      padding: 28px;
+
+      border: 1px solid #2c2c2c;
+      border-radius: 14px;
+
+      background: linear-gradient(
+        135deg,
+        #111214,
+        #0c0d0f
+      );
+
+      text-align: center;
+    }
+
+    .highlight span {
+      display: block;
+
+      color: #d4af37;
+
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+
+      letter-spacing: 2px;
+      text-transform: uppercase;
+
+      margin-bottom: 10px;
+    }
+
+    .highlight p {
+      margin: 0;
+
+      color: #eeeeee;
+      font-size: 22px;
+    }
+
+    /* SIGNATURE */
+
+    .signature {
+      margin-top: 50px;
+      padding-top: 25px;
+
+      border-top: 1px solid #292929;
+
+      color: #d4af37;
+      font-size: 21px;
+    }
+
+    .signature small {
+      display: block;
+
+      margin-top: 5px;
+
+      color: #777777;
+
+      font-family: Arial, sans-serif;
+      font-size: 12px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      border-top: 1px solid #242424;
+
+      text-align: center;
+
+      padding: 30px 20px;
+
+      color: #666666;
+
+      font-family: Arial, sans-serif;
+      font-size: 13px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 600px) {
+
+      .nav {
+        padding: 16px;
+      }
+
+      main {
+        padding: 50px 20px 70px;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .intro {
+        font-size: 18px;
+      }
+
+      article p {
+        font-size: 17px;
+      }
+
+      .quote {
+        font-size: 20px;
+      }
+
+      .highlight p {
+        font-size: 19px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header>
+    <div class="nav">
+
+      <a href="../index.html" class="logo">
+        RinkuWriter
+      </a>
+
+      <a href="../index.html" class="back">
+        ← Back to Home
+      </a>
+
+    </div>
+  </header>
+
+
+  <!-- ARTICLE -->
+
+  <main>
+
+    <div class="category">
+      My Writing Journey
+    </div>
+
+    <h1>
+      Why I Started RinkuWriter
+    </h1>
+
+    <div class="intro">
+      Ek chhoti si shuruaat, ek naye safar ki taraf.
+    </div>
+
+    <div class="meta">
+      <span>September 25, 2026</span>
+      <span class="dot">•</span>
+      <span>3 min read</span>
+      <span class="dot">•</span>
+      <span>Rinku</span>
+    </div>
+
+
+    <article>
+
+      <p>
+        Har kisi ke paas kehne ke liye kuch na kuch hota hai.
+        Kabhi woh ek thought hota hai, kabhi koi experience,
+        kabhi koi dream aur kabhi bas ek aisi feeling jise
+        words dena mushkil hota hai.
+      </p>
+
+
+      <p>
+        <strong>RinkuWriter</strong> mere liye sirf ek website nahi hai.
+        Yeh unhi thoughts, ideas aur experiences ko words mein
+        convert karne ki ek chhoti si koshish hai.
+      </p>
+
+
+      <p>
+        Maine yeh journey kisi perfect plan ke saath start nahi ki.
+        Bas ek simple thought tha —
+        <strong>jo kuch main seekh raha hoon, soch raha hoon aur
+        experience kar raha hoon, usse likhna chahiye.</strong>
+      </p>
+
+
+      <div class="quote">
+        "Har badi journey ki shuruaat ek chhote step se hoti hai."
+      </div>
+
+
+      <p>
+        Writing ki sabse interesting baat mujhe yeh lagti hai ki
+        ek simple idea bhi jab words mein aata hai, toh woh kisi
+        aur ke liye inspiration, knowledge ya ek naya perspective
+        ban sakta hai.
+      </p>
+
+
+      <p>
+        Isi thought ke saath maine RinkuWriter ko start kiya.
+        Main chahta hoon ki yeh ek aisi jagah bane jahan mere
+        thoughts sirf mere tak limited na rahen, balki un logon
+        tak bhi pahunch sakein jo unhe padhna chahte hain.
+      </p>
+
+
+      <div class="highlight">
+
+        <span>
+          The Beginning
+        </span>
+
+        <p>
+          This website is not the destination.
+          It is the beginning of the journey.
+        </p>
+
+      </div>
+
+
+      <p>
+        RinkuWriter par main apne articles, thoughts, stories,
+        experiences aur future mein apni books se judi cheezein
+        share karna chahta hoon.
+      </p>
+
+
+      <p>
+        Yeh sirf writing ka platform nahi hoga.
+        Yeh meri learning aur growth ki journey ka bhi ek record hoga.
+        Main yahan likhunga, seekhunga, galtiyan karunga,
+        improve karunga aur apni journey ko document karta rahunga.
+      </p>
+
+
+      <p>
+        Shayad aaj yahan bahut kuch na ho.
+        Shayad yeh beginning simple ho.
+        Lekin mujhe lagta hai ki kisi bhi bade dream ko
+        reality mein badalne ke liye sabse pehle
+        <strong>ek step lena padta hai.</strong>
+      </p>
+
+
+      <p>
+        Aur <strong>RinkuWriter mera woh pehla step hai.</strong>
+      </p>
+
+
+      <p>
+        Agar tum yahan tak aaye ho, toh thank you.
+        Tumne meri journey ke first page ko padha hai.
+      </p>
+
+
+      <p>
+        Ho sakta hai future mein tum yahan meri koi story padho,
+        koi thought tumhare mind mein reh jaaye,
+        ya kisi article se tumhe kuch naya seekhne ko mile.
+      </p>
+
+
+      <p>
+        Main nahi jaanta ki yeh journey mujhe exactly kahan le jayegi.
+        Lekin ek cheez zaroor pata hai —
+        <strong>main ise continue karna chahta hoon.</strong>
+      </p>
+
+
+      <p>
+        <strong>This is just the beginning.</strong>
+      </p>
+
+
+      <div class="signature">
+
+        — Rinku
+
+        <small>
+          Founder & Writer at RinkuWriter
+        </small>
+
+      </div>
+
+    </article>
+
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+    © 2026 RinkuWriter
+    <br>
+    Words. Ideas. Stories.
+  </footer>
+
+</body>
+  </html>
